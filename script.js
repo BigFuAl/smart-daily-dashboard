@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ─── Daily Quote API ───
 const quoteArea = document.getElementById('quoteArea');
 
-fetch('https://zenquotes.io/api/random')
+fetch('https://api.allorigins.win/raw?url=https://zenquotes.io/api/random')
   .then(res => res.json())
   .then(data => {
     if (data && data[0] && data[0].q && data[0].a) {
