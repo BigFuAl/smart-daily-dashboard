@@ -4,8 +4,11 @@
   --bg-gradient-end: #fad2e1;
   --card-bg: #fff;
   --text-color: #000;
+  --border-color: #ccc;
   --button-bg: #f3d2c1;
   --button-hover-bg: #fad2e1;
+  --primary: #c5a0de;
+  --primary-dark: #a17cc4;
 }
 
 /* Dark theme overrides */
@@ -14,8 +17,11 @@
   --bg-gradient-end: #1a1a1a;
   --card-bg: #444;
   --text-color: #eee;
+  --border-color: #555;
   --button-bg: #666;
   --button-hover-bg: #555;
+  --primary: #b191dd;
+  --primary-dark: #8f6cb9;
 }
 
 /* ─── Base Styles ─── */
@@ -230,10 +236,13 @@ footer {
 }
 
 #todoInput {
-  flex: 1;
-  padding: 0.5rem;
+  color: var(--text-color, #000); /* Ensures text is visible */
+  background-color: var(--card-bg, #fff); /* Contrast background */
+  padding: 0.5em;
+  border-radius: 6px;
   border: 1px solid var(--border-color, #ccc);
-  border-radius: 8px;
+  width: 100%;
+  margin-bottom: 0.5em;
 }
 
 #addTodoBtn {
