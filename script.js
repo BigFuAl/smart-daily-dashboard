@@ -5,6 +5,23 @@
 document.addEventListener('DOMContentLoaded', () => {
   console.log('✅ DOM loaded. JS running.');
 
+  // ─── Daily Quote API ───
+const quoteArea = document.getElementById('quoteArea');
+
+fetch('https://zenquotes.io/api/today')
+  .then(res => res.json())
+  .then(data => {
+    if (data && data[0] && data[0].q && data[0].a) {
+      quoteArea.innerText = `"${data[0].q}" — ${data[0].a}`;
+    } else {
+      quoteArea.innerText = 'Could not load quote today.';
+    }
+  })
+  .catch(err => {
+    console.error('❌ Failed to fetch quote:', err);
+    quoteArea.innerText = 'Quote unavailable. Try again later.';
+  });
+
   // ─── Dark-Mode Toggle Setup ───
   const themeToggle = document.getElementById('themeToggle');
   const savedTheme = localStorage.getItem('theme') || 'light';

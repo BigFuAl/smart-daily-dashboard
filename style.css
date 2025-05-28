@@ -208,3 +208,17 @@ footer {
 .chart-controls button:hover {
   background-color: var(--button-hover-bg);
 }
+
+/* -- Daily Quote */
+
+#dailyQuote {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #dbeafe; /* calm blue colour */
+  border-left: 4px solid #93c5fd;
+  border-radius: 6px;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--text-color);
+  line-height: 1.4;
+}
