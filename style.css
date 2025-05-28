@@ -222,3 +222,57 @@ footer {
   color: var(--text-color);
   line-height: 1.4;
 }
+/* ─── To-Do List ─── */
+.todo-controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+#todoInput {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid var(--border-color, #ccc);
+  border-radius: 8px;
+}
+
+#addTodoBtn {
+  padding: 0.5rem 1rem;
+  background-color: var(--primary, #c5a0de);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#addTodoBtn:hover {
+  background-color: var(--primary-dark, #a17cc4);
+}
+
+#todoList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#todoList li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--border-color, #eee);
+}
+
+#todoList li.completed span {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.todo-delete {
+  background: none;
+  border: none;
+  color: crimson;
+  font-weight: bold;
+  cursor: pointer;
+}

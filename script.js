@@ -155,4 +155,55 @@ fetch('https://api.allorigins.win/raw?url=https://zenquotes.io/api/random')
     localStorage.setItem('chartData', JSON.stringify(savedData));
     taskInput.value = '';
   });
+  // ─── To-Do List Logic ───
+const todoInput = document.getElementById('todoInput');
+const addTodoBtn = document.getElementById('addTodoBtn');
+const todoList = document.getElementById('todoList');
+
+// Load saved todos
+const savedTodos = JSON.parse(localStorage.getItem('todos')) || [];
+savedTodos.forEach(todo => renderTodo(todo));
+
+// Add new todo
+addTodoBtn.addEventListener('click', () => {
+  const text = todoInput.value.trim();
+  if (!text) return alert('Please enter a task.');
+
+  const newTodo = { text, completed: false };
+  savedTodos.push(newTodo);
+  localStorage.setItem('todos', JSON.stringify(savedTodos));
+  renderTodo(newTodo);
+  todoInput.value = '';
+});
+
+// Render a single todo item
+function renderTodo(todo) {
+  const li = document.createElement('li');
+  if (todo.completed) li.classList.add('completed');
+
+  const span = document.createElement('span');
+  span.innerText = todo.text;
+  span.style.cursor = 'pointer';
+  span.addEventListener('click', () => {
+    todo.completed = !todo.completed;
+    li.classList.toggle('completed');
+    localStorage.setItem('todos', JSON.stringify(savedTodos));
+  });
+
+  const delBtn = document.createElement('button');
+  delBtn.innerText = '×';
+  delBtn.className = 'todo-delete';
+  delBtn.addEventListener('click', () => {
+    const index = savedTodos.indexOf(todo);
+    if (index !== -1) {
+      savedTodos.splice(index, 1);
+      localStorage.setItem('todos', JSON.stringify(savedTodos));
+      li.remove();
+    }
+  });
+
+  li.appendChild(span);
+  li.appendChild(delBtn);
+  todoList.appendChild(li);
+}
 });
