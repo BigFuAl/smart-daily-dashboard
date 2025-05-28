@@ -10,8 +10,12 @@ jobs:
     name: 'Terraform Apply'
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./smart-daily-dashboard
+
     steps:
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Set up Terraform
@@ -20,19 +24,13 @@ jobs:
           terraform_version: 1.6.0
 
       - name: Terraform Init
-        run: |
-          cd first-project/smart-daily-dashboard
-          terraform init
+        run: terraform init
 
       - name: Terraform Plan
-        run: |
-          cd first-project/smart-daily-dashboard
-          terraform plan
+        run: terraform plan
 
       - name: Terraform Apply
-        run: |
-          cd first-project/smart-daily-dashboard
-          terraform apply -auto-approve
+        run: terraform apply -auto-approve
         env:
           ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
