@@ -42,31 +42,32 @@
       <div id="quoteArea" class="quote"><em>Loading quote...</em></div>    </div>
 
     <!-- Card 2: Chart -->
-    <div class="card">
-      <h2>Weekly Productivity</h2>
-      <div style="position: relative; height: 200px;">
-        <canvas id="productivityChart"></canvas>
-      </div>
+<div class="card">
+  <h2>Weekly Productivity</h2>
+  <div style="position: relative; height: 200px;">
+    <canvas id="productivityChart"></canvas>
+  </div>
+  <div class="chart-controls">
+    <input
+      type="number"
+      id="taskInput"
+      placeholder="Enter tasks completed today"
+      min="0"
+    />
+    <button id="addTaskBtn">Add Data Point</button>
+  </div>
+</div>
 
-      <!--Card 3: To-do List -->
-      <div class="card">
-        <h2>My To-Do List</h2>
-        <div class="todo-controls">
-          <input type="text" id="todoInput" placeholder="Add a new task"/>
-          <button id="addTodoBtn">Add Task</button>
-        </div>
-        <ul id="todoList"></ul>
-      </div>
-      
-      <div class="chart-controls">
-        <input
-          type="number"
-          id="taskInput"
-          placeholder="Enter tasks completed today"
-          min="0"
-        />
-        <button id="addTaskBtn">Add Data Point</button>
-      </div>
+<!-- Card 3: To-do List -->
+<div class="card">
+  <h2>My To-Do List</h2>
+  <div class="todo-controls">
+    <input type="text" id="todoInput" placeholder="Add a new task"/>
+    <button id="addTodoBtn">Add Task</button>
+  </div>
+  <ul id="todoList"></ul>
+</div>
+
     </div>
   </div>
 
