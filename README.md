@@ -1,31 +1,97 @@
-# Smart Daily Dashboard 
+# 🧠 Smart Daily Dashboard
 
-A friendly, pastel-themed daily dashboard that greets the user, captures their mood, and providesa personalized motivational message. Built with HTML, CSS and Javascript.
+A minimal, fully client-side productivity tool to track your mood, tasks, and journal — all stored privately in your browser with no backend.
 
-## Features 
+![Screenshot of the Smart Daily Dashboard](./Screenshot-Homepage.png)
 
-- Personalized greeting using a user's name 
-- Mood selection (Happy, Tired, Focused, etc.)
-- Custom motivational messages 
-- Soft pastel color palette 
-- LocalStorage support to remember the user's name
-- Responsive centered card layout 
+## 🌐 Live Demo
 
+**[Launch Smart Daily Dashboard](https://purple-desert-05ab2150f.6.azurestaticapps.net)**
 
-## Tech Stack
+---
 
-- HTML5
-- CSS3
-- Javacript (Vanilla)
+## 🔧 Features
 
+- 🌞 Good morning / afternoon / evening greeting
+- 🎭 Mood + emotion selector with tailored advice
+- 📝 Journal entries saved by date (view/edit anytime)
+- ✅ Task tracker with daily productivity bar chart
+- 📅 Calendar highlights days with saved logs
+- 🌚 Toggle between light/dark theme
+- 📖 Inspirational quote fetched on load
+- 💾 All data saved securely in localStorage
 
-## Setup Instructions 
+---
 
-1. Clone the repo
-2. Open `index.html` in your browser
-3. Enjoy your personalized dahsboard 
+## 📁 Folder Structure
+smart-daily-dashboard/
+│
+├── public/                   # Static frontend files
+│   ├── index.html            # Main HTML file
+│   ├── style.css             # UI styling
+│   └── script.js             # JavaScript logic
+│
+├── .github/workflows/        # Azure Static Web App deployment
+│   └── azure-static-web-apps-*.yml
+│
+├── main.tf                   # Terraform config to provision Azure SWA
+├── README.md                 # You’re reading it!
+└── Screenshot-Homepage.png  # Image for README preview
+---
 
+## 🚀 Tech Stack
 
-## Status 
+| Layer         | Tech                            |
+|--------------|----------------------------------|
+| Frontend     | HTML, CSS, JavaScript (Vanilla) |
+| Hosting      | Azure Static Web Apps            |
+| Infra as Code| Terraform                        |
 
-In development - styling and JavaScript functionality in progress. 
+---
+
+## 📦 Setup Locally
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/yourusername/smart-daily-dashboard.git
+
+# 2. Open in VS Code
+cd smart-daily-dashboard
+code .
+
+# 3. Run by opening public/index.html in browser
+
+Note: No Node.js or npm needed — this is a 100% static frontend project.
+
+⸻
+
+🧠 Inspiration
+
+This project was built to develop deeper frontend skills while designing something personally meaningful. It helped me:
+	•	Practice DOM manipulation and localStorage
+	•	Integrate real-time quote APIs
+	•	Learn Azure Static Web App deployment
+	•	Manage deployment pipelines with Terraform
+
+⸻
+
+👨🏾‍💻 Author
+
+Aliou Cisse
+	•	🔗 LinkedIn - https://www.linkedin.com/in/aliou-c-36b174133/
+	•	📫 aliou_cisse221@icloud.com 
+	•	🛠️ Built with passion and long nights of code
+
+⸻
+
+✅ Future Enhancements
+	•	Add editable tags to journal entries
+	•	Export logs to PDF
+	•	Add persistent theme toggle across sessions
+	•	Cloud sync via Supabase or Firebase
+
+⸻
+
+📜 License
+
+MIT — free for personal and commercial use.
