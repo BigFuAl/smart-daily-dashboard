@@ -14,7 +14,35 @@
   <body>
   <!-- 1. Theme Toggle Button (top right corner, only one!) -->
   <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
-<!-- Redeploy trigger -->
+ <!--View History Button-->
+  <button id="viewHistoryBtn">📅 View History</button>
+<ul id="historyList"></ul>
+
+<!-- Calendar Highlights -->
+<div class="card">
+  <h2>Journal Calendar</h2>
+  <div id="calendar" class="calendar-grid"></div>
+</div>
+
+<!--Journal Entry Section-->
+
+<div id="journalEntry" class="journal-display"></div>
+
+<!-- Journal Viewer Section -->
+<div class="card">
+  <h2>Journal Viewer</h2>
+  <label for="logDate">Select a date:</label>
+  <input type="date" id="logDate" />
+  <button id="loadLogBtn">View Entry</button>
+  <div id="journalEntry"></div>
+
+<label for="manualEntry">Write your thoughts:</label>
+<textarea id="manualEntry" rows="5" placeholder="How did your day go? What’s on your mind?"></textarea>
+<br />
+<button id="saveEntryBtn">Save Entry</button>
+</div>
+
+
   <!-- 2. Container holds the two cards -->
   <div class="container">
     <!-- Card 1: Greeting & Inputs -->

@@ -3,7 +3,82 @@
 // smart-daily-dashboard/script.js
 
 document.addEventListener('DOMContentLoaded', () => {
+    
+  
+  // ─── Journal Viewer Logic ───
+  const journalEntryDiv = document.getElementById('journalEntry');
+  const logDateInput = document.getElementById('logDate');
+  const loadLogBtn = document.getElementById('loadLogBtn');
+  const manualEntry = document.getElementById('manualEntry');
+  const saveEntryBtn = document.getElementById('saveEntryBtn');
+  const calendarDiv = document.getElementById('calendar');
+
+      function buildJournalCalendar() {
+  const logs = JSON.parse(localStorage.getItem('dailyLogs')) || [];
+  const markedDates = logs.map(log => log.date);
+
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth();
+
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
+  const totalDays = lastDay.getDate();
+  const startDay = firstDay.getDay();
+
+  calendarDiv.innerHTML = '';
+
+  for (let i = 0; i < startDay; i++) {
+    const empty = document.createElement('div');
+    calendarDiv.appendChild(empty);
+  }
+
+  for (let day = 1; day <= totalDays; day++) {
+    const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
+    const dayDiv = document.createElement('div');
+    dayDiv.className = 'calendar-day';
+    dayDiv.innerText = day;
+
+    if (markedDates.includes(dateStr)) {
+      dayDiv.classList.add('marked');
+    }
+
+    dayDiv.addEventListener('click', () => {
+      logDateInput.value = dateStr;
+      loadLogBtn.click(); // View journal for that day
+    });
+
+    calendarDiv.appendChild(dayDiv);
+  }
+}
+saveEntryBtn.addEventListener('click', () => {
+  const selectedDate = logDateInput.value;
+  const entryText = manualEntry.value.trim();
+  if (!selectedDate) return alert('Please select a date.');
+  if (!entryText) return alert('Please write something to save.');
+
+  const logs = JSON.parse(localStorage.getItem('dailyLogs')) || [];
+  const existing = logs.find(log => log.date === selectedDate);
+
+  if (existing) {
+    existing.journal = entryText;
+  } else {
+    logs.push({
+      date: selectedDate,
+      journal: entryText,
+      mood: null,
+      completed: null
+    });
+  }
+
+  localStorage.setItem('dailyLogs', JSON.stringify(logs));
+  manualEntry.value = '';
+  alert('✅ Entry saved!');
+  buildJournalCalendar(); // Refresh calendar to mark the new date
+  logDailySnapshot();
   console.log('✅ DOM loaded. JS running.');
+});
 
   // ─── Daily Quote API ───
 const quoteArea = document.getElementById('quoteArea');
@@ -205,6 +280,55 @@ function renderTodo(todo) {
   li.appendChild(span);
   li.appendChild(delBtn);
   todoList.appendChild(li);
+}
+// ─── View History Button Logic ───
+const viewHistoryBtn = document.getElementById('viewHistoryBtn');
+const historyList = document.getElementById('historyList');
+
+viewHistoryBtn.addEventListener('click', () => {
+  const logs = JSON.parse(localStorage.getItem('dailyLogs')) || [];
+
+  // Clear previous list
+  historyList.innerHTML = '';
+
+  if (logs.length === 0) {
+    const li = document.createElement('li');
+    li.innerText = 'No history logged yet.';
+    historyList.appendChild(li);
+    return;
+  }
+
+  logs.forEach(entry => {
+    const li = document.createElement('li');
+    li.innerText = `${entry.date} — Mood: ${entry.mood || 'N/A'}, Completed: ${entry.completed}`;
+    historyList.appendChild(li);
+  });
+});
+
+function logDailySnapshot() {
+  const today = new Date().toISOString().split('T')[0]; // e.g. "2025-05-28"
+  const completedTasks = savedTodos.filter(todo => todo.completed).length;
+  const selectedMood = moodSelect.value;
+
+  const snapshot = {
+    date: today,
+    mood: selectedMood,
+    completed: completedTasks
+  };
+
+
+
+  const logs = JSON.parse(localStorage.getItem('dailyLogs')) || [];
+  
+  // Avoid duplicate log for same day
+  const existingIndex = logs.findIndex(log => log.date === today);
+  if (existingIndex !== -1) {
+    logs[existingIndex] = snapshot;
+  } else {
+    logs.push(snapshot);
+  }
+
+  localStorage.setItem('dailyLogs', JSON.stringify(logs));
 }
   
 });
